@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CODEDIR="/projectnb/lau-bumc/SOFTWARE/TIDAL/CODE"
+CODEDIR=$4
 
 database=$2
 text=$3

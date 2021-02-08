@@ -1,7 +1,7 @@
 #update the two variables below
 #location of TIDAL CODE
 #CODEDIR="/nlmusr/reazur/linux/NELSON/TIDAL/CODE"
-CODEDIR="/projectnb/lau-bumc/SOFTWARE/TIDAL/CODE"
+CODEDIR=$2
 #location of trimmomatic, if needed 
 #TRIMMOMATICDIR="/nlmusr/reazur/linux/SOFTWARE/Trimmomatic-0.30"
 prefix=${1%.fastq*}

@@ -8,25 +8,25 @@ input=$prefix.noGEN
 #----------------- Initializations -----------------
 #change the variables in this section as needed
 #location of TIDAL code
-CODEDIR="/projectnb/lau-bumc/SOFTWARE/TIDAL/CODE"
+CODEDIR=$3
 #bowtie and bowtie2 indices, both have the same name in this case
-genomedb="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6"
+genomedb=$4
 #location of masked genome bowtie indices
-masked_genomedb="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6_mask"
+masked_genomedb=$5
 #location of consensus TE sequence bowtie indices 
-consensus_TEdb="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/dm_TE"
+consensus_TEdb=$6
 #Genome sequence in fasta format (all chromosome concatenated in one file)
-GENOME="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6.fa"
+GENOME=$7
 #Masked Genome sequence in fasta format (all chromosome concatenated in one file)
-MASKED_GENOME="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6.fa.masked"
+MASKED_GENOME=$8
 #Repeat masker file from repbase, downloaded from UCSC genome browser
-repeat_masker_file="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/repmasker_dm6_track.txt"
+repeat_masker_file=$9
 #Refseq annotation from UCSC genome browser
-refseq_annotationfile="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/refflat_dm6.txt"
+refseq_annotationfile=$10
 #location of custom table for classification and coversion from flybase to repbase name, this ensures that the naming is consistent with flybase
-table_lookup="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/Tidalbase_Dmel_TE_classifications_2015.txt"
+table_lookup=$11
 #tab delimited file with chromosome name and length
-chrlen_file="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/dm6.chr.len"
+chrlen_file=$12
 #----------------- End initialization -------------------
 
 pushd depletion

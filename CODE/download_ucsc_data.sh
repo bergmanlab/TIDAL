@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #location of TIDAL code
-CODEDIR="/nlmusr/reazur/linux/NELSON/TIDAL/CODE"
+CODEDIR=$1
 
 ftp -nv hgdownload.soe.ucsc.edu 21 << ptf
 user anonymous reazur@brandeis.edu

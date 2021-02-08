@@ -10,28 +10,30 @@ read_len=$2
 #change the variables in this section as needed
 #location of TIDAL code
 #CODEDIR="/nlmusr/reazur/linux/NELSON/TIDAL/CODE"
-CODEDIR="/projectnb/lau-bumc/SOFTWARE/TIDAL/CODE"
+CODEDIR=$3
 #/projectnb/lau-bumc/reazur
 #bowtie and bowtie2 indices, both have the same name in this case
-genomedb="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6"
+genomedb=$4
 #location of masked genome bowtie indices
-masked_genomedb="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6_mask"
+masked_genomedb=$5
 #location of consensus TE sequence bowtie indices 
-consensus_TEdb="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/dm_TE"
+consensus_TEdb=$6
 #location of FREEC 
 #FREECDIR="/nlmusr/reazur/linux/SOFTWARE/FREEC"
 #Genome sequence in fasta format (all chromosome concatenated in one file)
-GENOME="/projectnb/lau-bumc/reazur/GENOMES/dm6/dm6.fa"
+GENOME=$7
 #Refseq annotation from UCSC genome browser
-refseq_annotationfile="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/refflat_dm6.txt"
+refseq_annotationfile=$8
 #tab delimited file with chromosome name and length
-chrlen_file="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/dm6.chr.len"
+chrlen_file=$9
 #directory of individual chromosome files needed by FREEC
-chrDir="/projectnb/lau-bumc/reazur/GENOMES/dm6"
+chrDir=${10}
 #gem mappability file locationa
-gemMappabilityFile="/projectnb/lau-bumc/reazur/GENOMES/dm6/gem/gem_mappability_dm6_100mer.mappability"
+gemMappabilityFile=${11}
 #bowtie indices of fly virus, structure and repbase sequence
-fly_virus_structure_repbase_DB="/projectnb/lau-bumc/SOFTWARE/TIDAL/annotation/fly_virus_structure_repbase"
+fly_virus_structure_repbase_DB=${12}
+
+TE_fasta=${13}
 #----------------- End initialization -------------------
 pushd insertion
 
@@ -44,7 +46,7 @@ polyn_output=$1
 input=$polyn_output
 output=$input".sam"
  
-bowtie2 -f --sensitive -p 9 --end-to-end -x $genomedb -S $output -U $input
+bowtie2 -f --sensitive -p 20 --end-to-end -x $genomedb -S $output -U $input
 #-x localtion of bowtie2 database
 
 perl $CODEDIR/bowtie2_separate_unmatched_read.pl -f $input $output
@@ -85,7 +87,7 @@ echo "Done with Freec"
 #convert the sam file into a sorted bam file
 $CODEDIR/convert_sam_sorted_bam.sh $samfile
 #------ TE coverage counting ---------
-$CODEDIR/TE_coverage_TIDAL.sh $polyn_output $prefix".sort.bam"
+$CODEDIR/TE_coverage_TIDAL.sh $polyn_output $prefix".sort.bam" $CODEDIR $consensus_TEdb $TE_fasta
 
 ##############################
 # remove virus. structural rna, repbase sequences 
@@ -95,7 +97,7 @@ mismatch=3
 database=$fly_virus_structure_repbase_DB
 input=$prefix".filter"
 output=$input".sam"
-bowtie -f -v $mismatch -S -k 2 -m 100000 -p 9 $database $input $output
+bowtie -f -v $mismatch -S -k 2 -m 100000 -p 20 $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $prefix.strna
@@ -116,7 +118,7 @@ mismatch=3
 database=$consensus_TEdb
 input=$prefix".nostrna"
 output=$input".sam"
-bowtie -f -v $mismatch -S -k 2 -m 100000 -p 9 $database $input $output
+bowtie -f -v $mismatch -S -k 2 -m 100000 -p 20 $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $prefix.TE
