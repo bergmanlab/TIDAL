@@ -23,10 +23,6 @@ $CODEDIR/align_to_gene_list_bowtie2.sh $input $database "TE consensus mapping" $
 
 
 #TE_fasta="/projectnb/lau-bumc/SOFTWARE/TIDAL/TE_count_database/consensus_TE_gene_fly.fa"
-echo ${align_input}": align_input"
-echo ${read_count}": read_count"
-echo ${TE_fasta}": TE_fasta"
-echo $PWD": pwd"
 perl $CODEDIR/generate_read_count_TE.pl -q $align_input -r $read_count -s $TE_fasta > $prefix".TE_table.xls"
 
 

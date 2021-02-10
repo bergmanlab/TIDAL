@@ -22,11 +22,11 @@ MASKED_GENOME=$8
 #Repeat masker file from repbase, downloaded from UCSC genome browser
 repeat_masker_file=$9
 #Refseq annotation from UCSC genome browser
-refseq_annotationfile=$10
+refseq_annotationfile=${10}
 #location of custom table for classification and coversion from flybase to repbase name, this ensures that the naming is consistent with flybase
-table_lookup=$11
+table_lookup=${11}
 #tab delimited file with chromosome name and length
-chrlen_file=$12
+chrlen_file=${12}
 #----------------- End initialization -------------------
 
 pushd depletion

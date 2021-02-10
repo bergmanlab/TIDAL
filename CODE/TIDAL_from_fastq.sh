@@ -19,13 +19,13 @@ consensus_TEdb=$6
 GENOME=$7
 refseq_annotationfile=$8
 chrlen_file=$9
-chrDir=$10
-gemMappabilityFile=$11
-fly_virus_structure_repbase_DB=$12
-MASKED_GENOME=$13
-repeat_masker_file=$14
-table_lookup=$15
-TE_fasta=$16
+chrDir=${10}
+gemMappabilityFile=${11}
+fly_virus_structure_repbase_DB=${12}
+MASKED_GENOME=${13}
+repeat_masker_file=${14}
+table_lookup=${15}
+TE_fasta=${16}
 
 #data prep and creation of uq file
 $CODEDIR/data_prep.sh $lib $CODEDIR 
