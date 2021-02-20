@@ -34,6 +34,8 @@ gemMappabilityFile=${11}
 fly_virus_structure_repbase_DB=${12}
 
 TE_fasta=${13}
+
+threads=${14}
 #----------------- End initialization -------------------
 pushd insertion
 
@@ -46,7 +48,7 @@ polyn_output=$1
 input=$polyn_output
 output=$input".sam"
  
-bowtie2 -f --sensitive -p 20 --end-to-end -x $genomedb -S $output -U $input
+bowtie2 -f --sensitive -p $threads --end-to-end -x $genomedb -S $output -U $input
 #-x localtion of bowtie2 database
 
 perl $CODEDIR/bowtie2_separate_unmatched_read.pl -f $input $output
@@ -97,7 +99,7 @@ mismatch=3
 database=$fly_virus_structure_repbase_DB
 input=$prefix".filter"
 output=$input".sam"
-bowtie -f -v $mismatch -S -k 2 -m 100000 -p 20 $database $input $output
+bowtie -f -v $mismatch -S -k 2 -m 100000 -p $threads $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $prefix.strna
@@ -118,7 +120,7 @@ mismatch=3
 database=$consensus_TEdb
 input=$prefix".nostrna"
 output=$input".sam"
-bowtie -f -v $mismatch -S -k 2 -m 100000 -p 20 $database $input $output
+bowtie -f -v $mismatch -S -k 2 -m 100000 -p $threads $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $prefix.TE

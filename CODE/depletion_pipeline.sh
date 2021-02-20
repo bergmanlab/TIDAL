@@ -27,6 +27,8 @@ refseq_annotationfile=${10}
 table_lookup=${11}
 #tab delimited file with chromosome name and length
 chrlen_file=${12}
+
+threads=${13}
 #----------------- End initialization -------------------
 
 pushd depletion
@@ -49,7 +51,7 @@ database=$masked_genomedb
 
 input=$frontfile
 output=$input".gendel.sam"
-bowtie -f -v $mismatch -S -k 5 -m 5 --strata --best -p 12 $database $input $output
+bowtie -f -v $mismatch -S -k 5 -m 5 --strata --best -p $threads $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $input.gendel
@@ -69,7 +71,7 @@ database=$masked_genomedb
 
 input=$endfile
 output=$input".gendel.sam"
-bowtie -f -v $mismatch -S -k 5 -m 5 --strata --best -p 12 $database $input $output
+bowtie -f -v $mismatch -S -k 5 -m 5 --strata --best -p $threads $database $input $output
 
 perl $CODEDIR/separate_aligned_unaligned.pl -f $input -s $output 
 mv $input.al $input.gendel

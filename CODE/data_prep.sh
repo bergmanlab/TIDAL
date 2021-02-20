@@ -9,13 +9,15 @@ prefix=${1%.fastq*}
 SElib=$1
 finallib=$prefix".trim.fastq"
 
+threads=$3
+
 input=$SElib
 output=$finallib
 avgquality="20"
 #provide directory location of trimmomatic
 #java -jar $TRIMMOMATICDIR/trimmomatic-0.30.jar SE -phred33 $input $output LEADING:20 TRAILING:20 AVGQUAL:$avgquality
 #MINLEN:85
-trimmomatic SE -phred33 $input $output LEADING:20 TRAILING:20 AVGQUAL:$avgquality
+trimmomatic SE -threads $threads -phred33 $input $output LEADING:20 TRAILING:20 AVGQUAL:$avgquality
 
 echo "Done with quality control"
 mv $finallib $SElib

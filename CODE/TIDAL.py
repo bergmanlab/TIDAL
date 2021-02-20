@@ -11,13 +11,21 @@ except ImportError as e:
     sys.exit("ERROR...unable to load required python modules\ntry reinstalling and/or activating TIDAL environment:\n\tconda env create -f TIDAL.yml --name TIDAL\n\tconda activate TIDAL\n")
 
 
+class Insertion:
+    def __init__(self):
+        self.info = {}
+        self.is_ref = False
+
+
 def main():
     code_dir = os.path.dirname(os.path.abspath(__file__))
     print(code_dir)
     args = parse_args()
     args = setup_input_files(args)
     chrom_len_file = make_chrom_files(args)
-    run_tidal(args, chrom_len_file, code_dir)
+    read_length = estimate_read_length(args.fastq)
+    depletion_tbl, insertion_tbl  = run_tidal(args, chrom_len_file, read_length, code_dir)
+    write_output(depletion_tbl, insertion_tbl, args.sample_name, args.out)
 
 
 def parse_args():
@@ -34,6 +42,7 @@ def parse_args():
     parser.add_argument("-n", "--repeatmasker", type=str, help=" Repeat masker track from UCSC genome browser (table browser, track: Repeatmasker, table: rmsk, output format: all fields from table)", required=True)
     parser.add_argument("-t", "--table", type=str, help="Custom table for repbase to flybase lookup", required=True)
 
+    parser.add_argument("-p", "--processors", type=int, help="Number of CPU threads to use for compatible tools (default=1)", required=False)
     parser.add_argument("-s", "--sample_name", type=str, help="Sample name to use for output files (default=FASTQ name)", required=False)
     parser.add_argument("-o", "--out", type=str, help="Directory to create the output files (must be empty/creatable)(default='.')", required=False)
 
@@ -56,6 +65,9 @@ def parse_args():
         if "/" in args.sample_name:
             sys.exit(args.sample_name+" is not a valid sample name...\n")
     
+    if args.processors is None:
+        args.processors = 1
+
     if args.out is None:
         args.out = os.path.abspath(".")
     else:
@@ -199,18 +211,32 @@ def make_chrom_files(args):
     return chrom_len_file
 
 
-def run_tidal(args, chrom_len, codedir):
+def estimate_read_length(fq, reads=10000):
+    lengths = []
+    with open(fq,"r") as f:
+        for x, line in enumerate(f):
+            if x%4 == 1:
+                lengths.append(len(line.replace('\n',"")))
+            
+            if x >= reads:
+                break
+    
+    length = sum(lengths)//len(lengths)
+
+    return length
+
+def run_tidal(args, chrom_len, read_length, codedir):
     os.chdir(args.out+"/TIDAL_out")
 
-    run_command(["bash", codedir+"/data_prep.sh", os.path.basename(args.fastq), codedir])
+    run_command(["bash", codedir+"/data_prep.sh", os.path.basename(args.fastq), codedir, str(args.processors)])
 
-    # TODO add function to get read length from fastq
-    # TODO add function that creates chrom length file
-    # TODO add function that splits fasta into separate files
+    if not os.path.exists(os.path.basename(args.fastq)+".uq.polyn"):
+        sys.exit("data_prep.sh failed...exiting...\n")
+
     run_command([
         "bash", codedir+"/insert_pipeline.sh",
             os.path.basename(args.fastq)+".uq.polyn",
-            "101",
+            str(read_length),
             codedir,
             remove_file_ext(args.reference),
             remove_file_ext(args.masked),
@@ -221,8 +247,72 @@ def run_tidal(args, chrom_len, codedir):
             args.out+"/reference/chroms/",
             args.gem,
             remove_file_ext(args.virus),
-            args.consensus
+            args.consensus,
+            str(args.processors)
     ])
+
+    if not os.path.exists(args.out+"/TIDAL_out/insertion/"+args.sample_name+"_Inserts_Annotated.txt"):
+        sys.exit("insert_pipeline.sh failed...exiting...\n")
+
+    run_command(["bash", codedir+"/setup.sh", os.path.basename(args.fastq)])
+
+    run_command([
+        "bash", codedir+"/depletion_pipeline.sh",
+            os.path.basename(args.fastq)+".uq.polyn",
+            str(read_length),
+            codedir,
+            remove_file_ext(args.reference),
+            remove_file_ext(args.masked),
+            remove_file_ext(args.consensus),
+            args.reference,
+            args.masked,
+            args.repeatmasker,
+            args.annotation,
+            args.table,
+            chrom_len,
+            str(args.processors)
+    ])
+
+    if not os.path.exists(args.out+"/TIDAL_out/depletion/"+args.sample_name+"_Depletion_Annotated.txt"):
+        sys.exit("insert_pipeline.sh failed...exiting...\n")
+
+    run_command(["bash", codedir+"/last_part.sh", os.path.basename(args.fastq), codedir])
+
+    if not os.path.exists(args.out+"/TIDAL_out/"+args.sample_name+"_result/"+args.sample_name+"_Depletion_Annotated.txt"):
+        sys.exit("last_part.sh failed...exiting...\n")
+
+    depletion_table = args.out+"/TIDAL_out/"+args.sample_name+"_result/"+args.sample_name+"_Depletion_Annotated_TEonly.txt"
+    insertion_table = args.out+"/TIDAL_out/"+args.sample_name+"_result/"+args.sample_name+"_Inserts_Annotated.txt"
+
+    return depletion_table, insertion_table 
+
+
+def write_output(depletion_tbl, insertion_tbl, sample_name, out_dir):
+
+    insertions = []
+    with open(insertion_tbl,"r") as tbl:
+        for x,line in enumerate(tbl):
+            if x == 0:
+                headers = line.replace("\n","").split("\t")
+            else:
+                insert = Insertion()
+                split_line = line.replace("\n","").split("\t")
+                for x,val in enumerate(split_line):
+                    insert.info[headers[x]] = val
+                
+                insertions.append(insert)
+
+    with open(out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_tmp.bed", "w") as outbed:
+        outbed.write('track name="'+sample_name+'_popoolationte" description="'+sample_name+'_popoolationte"\n')
+
+        for x,insert in enumerate(insertions):
+            if not insert.is_ref:
+                name = insert.info['TE']+"|non-reference|"+insert.info['Coverage_Ratio']+"|"+sample_name+"|sr|"+str(x)
+                out_line = [insert.info["Chr"], insert.info["Chr_coord_5p"], insert.info["Chr_coord_3p"], name, "0", "."]
+
+                outbed.write("\t".join(out_line) + "\n")
+
+
 
 
 if __name__ == "__main__":                
