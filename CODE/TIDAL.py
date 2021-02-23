@@ -16,32 +16,41 @@ class Insertion:
         self.info = {}
         self.is_ref = False
 
+ANNOTATION_FILES = {
+    "consensus" : "Tidalbase_transposon_gene_sequence.fa",
+    "annotation" : "refflat_dm6.txt",
+    "gem" : "gem_mappability_dm6_100mer.mappability",
+    "virus" : "fly_virus_structure_repbase.fa",
+    "repeatmasker" : "repmasker_dm6_track.txt",
+    "table" : "Tidalbase_Dmel_TE_classifications_2015.txt"
+}
 
 def main():
     code_dir = os.path.dirname(os.path.abspath(__file__))
+    annotation_dir = code_dir+"/../annotation/"
     print(code_dir)
-    args = parse_args()
+    args = parse_args(annotation_dir)
     args = setup_input_files(args)
     chrom_len_file = make_chrom_files(args)
     read_length = estimate_read_length(args.fastq)
     depletion_tbl, insertion_tbl  = run_tidal(args, chrom_len_file, read_length, code_dir)
-    write_output(depletion_tbl, insertion_tbl, args.sample_name, args.out)
+    write_output(depletion_tbl, insertion_tbl, args.repeatmasker, args.table, args.reference, args.sample_name, args.out)
 
 
-def parse_args():
+def parse_args(annot_dir):
     parser = argparse.ArgumentParser(prog='TIDAL', description="Pipeline built to identify Transposon Insertion and Depletion in flies")
 
     ## required ##
     parser.add_argument("-f", "--fastq", type=str, help="A FASTQ file containing the NGS reads", required=True)
     parser.add_argument("-r", "--reference", type=str, help="A reference genome sequence in fasta format", required=True)
-    parser.add_argument("-c", "--consensus", type=str, help="The consensus sequences of the TEs in fasta format", required=True)
-    parser.add_argument("-a", "--annotation", type=str, help="The RefSeq annotation from UCSC genome browser", required=True)
-    parser.add_argument("-g", "--gem", type=str, help="The gem mappability file for use with FREEC", required=True)
-    parser.add_argument("-v", "--virus", type=str, help="Manunally curated sequence from fly viruses, structural and repbase sequences", required=True)
     parser.add_argument("-m", "--masked", type=str, help="A reference genome sequence in fasta format masked by RepeatMasker", required=True)
-    parser.add_argument("-n", "--repeatmasker", type=str, help=" Repeat masker track from UCSC genome browser (table browser, track: Repeatmasker, table: rmsk, output format: all fields from table)", required=True)
-    parser.add_argument("-t", "--table", type=str, help="Custom table for repbase to flybase lookup", required=True)
 
+    parser.add_argument("-c", "--consensus", type=str, help="The consensus sequences of the TEs in fasta format", required=False)
+    parser.add_argument("-a", "--annotation", type=str, help="The RefSeq annotation from UCSC genome browser", required=False)
+    parser.add_argument("-g", "--gem", type=str, help="The gem mappability file for use with FREEC", required=False)
+    parser.add_argument("-v", "--virus", type=str, help="Manunally curated sequence from fly viruses, structural and repbase sequences", required=False)
+    parser.add_argument("-n", "--repeatmasker", type=str, help=" Repeat masker track from UCSC genome browser (table browser, track: Repeatmasker, table: rmsk, output format: all fields from table)", required=False)
+    parser.add_argument("-t", "--table", type=str, help="Custom table for repbase to flybase lookup", required=False)
     parser.add_argument("-p", "--processors", type=int, help="Number of CPU threads to use for compatible tools (default=1)", required=False)
     parser.add_argument("-s", "--sample_name", type=str, help="Sample name to use for output files (default=FASTQ name)", required=False)
     parser.add_argument("-o", "--out", type=str, help="Directory to create the output files (must be empty/creatable)(default='.')", required=False)
@@ -50,13 +59,38 @@ def parse_args():
 
     args.fastq = get_abs_path(args.fastq)
     args.reference = get_abs_path(args.reference)
-    args.consensus = get_abs_path(args.consensus)
-    args.annotation = get_abs_path(args.annotation)
-    args.gem = get_abs_path(args.gem)
-    args.virus = get_abs_path(args.virus)
     args.masked = get_abs_path(args.masked)
-    args.repeatmasker = get_abs_path(args.repeatmasker)
-    args.table = get_abs_path(args.table)
+    
+    if args.consensus is None:
+        args.consensus = get_abs_path(annot_dir+ANNOTATION_FILES['consensus'])
+    else:
+        args.consensus = get_abs_path(args.consensus)
+
+
+    if args.annotation is None:
+        args.annotation = get_abs_path(annot_dir+ANNOTATION_FILES['annotation'])
+    else:
+        args.annotation = get_abs_path(args.annotation)
+    
+    if args.gem is None:
+        args.gem = get_abs_path(annot_dir+ANNOTATION_FILES['gem'])
+    else:
+        args.gem = get_abs_path(args.gem)
+
+    if args.virus is None:
+        args.virus = get_abs_path(annot_dir+ANNOTATION_FILES['virus'])
+    else:
+        args.virus = get_abs_path(args.virus)
+    
+    if args.repeatmasker is None:
+        args.repeatmasker = get_abs_path(annot_dir+ANNOTATION_FILES['repeatmasker'])
+    else:
+        args.repeatmasker = get_abs_path(args.repeatmasker)
+
+    if args.table is None:
+        args.table = get_abs_path(annot_dir+ANNOTATION_FILES['table'])
+    else:
+        args.table = get_abs_path(args.table)
 
     if args.sample_name is None:
         args.sample_name = os.path.basename(args.fastq)
@@ -139,6 +173,52 @@ def run_command(cmd_list, log=None, fatal=True):
             out.write(" ".join(cmd_list)+"\n")
             subprocess.check_call(cmd_list, stdout=out, stderr=out)
             out.close()
+
+        except subprocess.CalledProcessError as e:
+            if e.output is not None:
+                msg = str(e.output)+"\n"
+            if e.stderr is not None:
+                msg += str(e.stderr)+"\n"
+            cmd_string = " ".join(cmd_list)
+            msg += msg + cmd_string + "\n"
+            writelog(log, msg)
+            sys.stderr.write(msg)
+            if fatal:
+                sys.exit(1)
+            else:
+                return False
+    
+    return True
+
+def run_command_stdout(cmd_list, out_file, log=None, fatal=True):
+    msg = ""
+    if log is None:
+        try:
+            # print(" ".join(cmd_list)+" > "+out_file)
+            out = open(out_file,"w")
+            subprocess.check_call(cmd_list, stdout=out)
+            out.close()
+        except subprocess.CalledProcessError as e:
+            if e.output is not None:
+                msg = str(e.output)+"\n"
+            if e.stderr is not None:
+                msg += str(e.stderr)+"\n"
+            cmd_string = " ".join(cmd_list)
+            msg += msg + cmd_string + "\n"
+            sys.stderr.write(msg)
+            if fatal:
+                sys.exit(1)
+            else:
+                return False
+    
+    else:
+        try:
+            out_log = open(log,"a")
+            out_log.write(" ".join(cmd_list)+" > "+out_file+"\n")
+            out = open(out_file,"w")
+            subprocess.check_call(cmd_list, stdout=out, stderr=out_log)
+            out.close()
+            out_log.close()
 
         except subprocess.CalledProcessError as e:
             if e.output is not None:
@@ -287,10 +367,9 @@ def run_tidal(args, chrom_len, read_length, codedir):
     return depletion_table, insertion_table 
 
 
-def write_output(depletion_tbl, insertion_tbl, sample_name, out_dir):
-
+def read_table(intbl):
     insertions = []
-    with open(insertion_tbl,"r") as tbl:
+    with open(intbl,"r") as tbl:
         for x,line in enumerate(tbl):
             if x == 0:
                 headers = line.replace("\n","").split("\t")
@@ -301,16 +380,115 @@ def write_output(depletion_tbl, insertion_tbl, sample_name, out_dir):
                     insert.info[headers[x]] = val
                 
                 insertions.append(insert)
+    
+    return insertions
 
-    with open(out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_tmp.bed", "w") as outbed:
-        outbed.write('track name="'+sample_name+'_popoolationte" description="'+sample_name+'_popoolationte"\n')
+def get_repbase_families(table):
+    families = {}
+    
+    with open(table,"r") as tbl:
+        for x,line in enumerate(tbl):
+            split_line = line.split("\t")
+            families[split_line[7]] = split_line[9]
+    
+    return families
+    
 
+def write_output(depletion_tbl, insertion_tbl, rm_out, rep_fly_table, reference, sample_name, out_dir):
+
+    # make insertions bed
+    insertions = read_table(insertion_tbl)
+    tmp_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_tmp.bed"
+    with open(tmp_bed, "w") as outbed:
         for x,insert in enumerate(insertions):
             if not insert.is_ref:
-                name = insert.info['TE']+"|non-reference|"+insert.info['Coverage_Ratio']+"|"+sample_name+"|sr|"+str(x)
+                name = insert.info['TE']+"|non-reference|"+insert.info['Coverage_Ratio']+"|"+sample_name+"|sr|"
                 out_line = [insert.info["Chr"], insert.info["Chr_coord_5p"], insert.info["Chr_coord_3p"], name, "0", "."]
 
                 outbed.write("\t".join(out_line) + "\n")
+    
+
+    all_repeats = read_table(rm_out)
+    depletions = read_table(depletion_tbl)
+    families = get_repbase_families(rep_fly_table)
+
+    chroms = []
+    with open(reference, "r") as infa:
+        for record in SeqIO.parse(infa, "fasta"):
+            chroms.append(str(record.id))
+
+
+    # make all ref TE bed
+    ref_insert_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_ref.bed"
+    with open(ref_insert_bed,"w") as ref_bed:
+        for repeat in all_repeats:
+            if repeat.info['repName'] in families.keys() and repeat.info['genoName'] in chroms:
+                chrom = repeat.info['genoName']
+                start = repeat.info['genoStart']
+                end = repeat.info['genoEnd']
+                name = families[repeat.info['repName']]+"|reference|NA|"+sample_name+"|sr|"
+                out_line = [chrom, start, end, name, "0", repeat.info['strand']]
+                ref_bed.write("\t".join(out_line) + "\n")
+    
+
+    # make TE depletion bed
+    depletion_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_depletion.bed"
+    with open(depletion_bed, "w") as dep_bed:
+        for depletion in depletions:
+            chrom = depletion.info['Chr_5p']
+            start = depletion.info['Chr_coord_5p_start']
+            end = depletion.info['Chr_coord_3p_end']
+            name = depletion.info['repName']+"|depletion|NA|"+sample_name+"|sr|"
+            out_line = [chrom, start, end, name, "0", "."]
+            dep_bed.write("\t".join(out_line) + "\n")
+    
+
+    # remove ref TEs that are depleted
+    nonabs_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_nonabs.bed"
+    run_command_stdout(["bedtools", "intersect", "-v", "-a", ref_insert_bed, "-b", depletion_bed], nonabs_bed)
+
+    # combine nonabs and nonref TEs
+    with open(nonabs_bed, "r") as inbed, open(tmp_bed, "a") as outbed:
+        for line in inbed:
+            outbed.write(line)
+    
+    # get uniq predictions
+    uniq_inserts = {}
+    with open(tmp_bed, "r") as inbed:
+        for line in inbed:
+            split_line = line.split("\t")
+            te_type = split_line[3].split("|")[1]
+            key = "_".join([split_line[0], split_line[1], split_line[2], te_type])
+            if key not in uniq_inserts.keys() or te_type == "reference":
+                uniq_inserts[key] = split_line
+            else:
+                ratio = float(split_line[3].split("|")[2])
+                existing_ratio = float(uniq_inserts[key][3].split("|")[2])
+                if ratio > existing_ratio:
+                    uniq_inserts[key] = split_line
+
+    unsorted_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_nonredundant_unsorted.bed"
+    with open(unsorted_bed, "w") as outbed:
+        for x,key in enumerate(uniq_inserts.keys()):
+            split_line = uniq_inserts[key]
+            split_line[3] = split_line[3]+str(x)
+            outbed.write("\t".join(split_line)+"\n")
+
+
+    nonredundant_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_nonredundant_unlabeled.bed"
+    run_command_stdout(["bedtools", "sort", "-i", unsorted_bed], nonredundant_bed)
+
+    labeled_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_nonredundant.bed"
+    with open(nonredundant_bed, "r") as inbed, open(labeled_bed, "a") as outbed:
+        outbed.write('track name="'+sample_name+'_tidal" description="'+sample_name+'_tidal"\n')
+        for x,line in enumerate(inbed):
+            split_line = line.split("\t")
+            split_line[3] += str(x)
+            outbed.write("\t".join(split_line))
+    
+
+    run_command(["rm", tmp_bed, ref_insert_bed, depletion_bed, nonabs_bed, unsorted_bed, nonredundant_bed])
+
 
 
 
