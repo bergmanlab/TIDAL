@@ -34,7 +34,8 @@ def main():
     chrom_len_file = make_chrom_files(args)
     read_length = estimate_read_length(args.fastq)
     depletion_tbl, insertion_tbl  = run_tidal(args, chrom_len_file, read_length, code_dir)
-    write_output(depletion_tbl, insertion_tbl, args.repeatmasker, args.table, args.reference, args.sample_name, args.out)
+    consensus_repmask = repeatmask(args.reference, args.consensus, args.processors, args.out)
+    write_output(depletion_tbl, insertion_tbl, consensus_repmask, args.table, args.reference, args.sample_name, args.out)
 
 
 def parse_args(annot_dir):
@@ -81,11 +82,6 @@ def parse_args(annot_dir):
         args.virus = get_abs_path(annot_dir+ANNOTATION_FILES['virus'])
     else:
         args.virus = get_abs_path(args.virus)
-    
-    if args.repeatmasker is None:
-        args.repeatmasker = get_abs_path(annot_dir+ANNOTATION_FILES['repeatmasker'])
-    else:
-        args.repeatmasker = get_abs_path(args.repeatmasker)
 
     if args.table is None:
         args.table = get_abs_path(annot_dir+ANNOTATION_FILES['table'])
@@ -113,6 +109,13 @@ def parse_args(annot_dir):
             print(track, file=sys.stderr)
             print("cannot create output directory: ",args.out,"exiting...", file=sys.stderr)
             sys.exit(1)
+
+    if args.repeatmasker is None:
+        args.repeatmasker = get_abs_path(annot_dir+ANNOTATION_FILES['repeatmasker'])
+        # args.repeatmasker = get_abs_path(args.out+"/repeatmasker.out")
+    else:
+        args.repeatmasker = get_abs_path(args.repeatmasker)
+
 
     return args
 
@@ -305,6 +308,81 @@ def estimate_read_length(fq, reads=10000):
 
     return length
 
+def repeatmask(reference, consensus, threads, out):
+    tmp_dir = out+"/rm/"
+    os.mkdir(tmp_dir)
+    run_command(["cp", reference, tmp_dir+"/reference.fasta"])
+    command = ["RepeatMasker","-pa", str(threads), "-lib", consensus, "-dir", tmp_dir, "-s", "-nolow", "-no_is", reference]
+    run_command(command)
+
+    rm_out = ""
+    for f in os.listdir(tmp_dir):
+        if ("fasta.out" in f and f[-9:] == "fasta.out") or ("fa.out" in f and f[-6:] == "fa.out"):
+            rm_out = tmp_dir+"/"+f
+    
+    if rm_out == "":
+        sys.exit("can't find Repeatmasker output in:"+tmp_dir+"\n")
+    
+
+    rm_formatted = out+"/rm/repmasker_track.txt"
+    with open(rm_formatted,"w") as out, open(rm_out, "r") as inf:
+        header = ["#bin","swScore","milliDiv","milliDel","milliIns","genoName","genoStart","genoEnd","genoLeft","strand","repName","repClass","repFamily","repStart","repEnd","repLeft","id"]
+        out.write("\t".join(header)+"\n")
+
+        for ln,line in enumerate(inf):
+            if ln > 2:
+                line = line.replace("\n","")
+                vals = []
+                split_line = line.split(" ")
+                for val in split_line:
+                    if val != "":
+                        vals.append(val)
+
+                genoLeft = vals[7]
+                if "(" in genoLeft:
+                    genoLeft = genoLeft.replace("(","")
+                    genoLeft = genoLeft.replace(")","")
+                    genoLeft = "-"+genoLeft
+
+                strand = vals[8]
+                if strand == "C":
+                    strand = "-"
+
+                te_name = vals[9]
+                te_name = te_name.split("@")[-1]
+                te_name = te_name.split("=")[0]
+
+                repStart = vals[11]
+                if "(" in repStart:
+                    repStart = repStart.replace("(","")
+                    repStart = repStart.replace(")","")
+                    repStart = "-"+repStart
+                
+                repEnd = vals[12]
+                if "(" in repEnd:
+                    repEnd = repEnd.replace("(","")
+                    repEnd = repEnd.replace(")","")
+                    repEnd = "-"+repEnd
+
+                repLeft = vals[13]
+                if "(" in repLeft:
+                    repLeft = repLeft.replace("(","")
+                    repLeft = repLeft.replace(")","")
+                    repLeft = "-"+repLeft
+
+                vals[7] = genoLeft
+                vals[8] = strand
+                vals[9] = te_name
+                vals[11] = repStart
+                vals[12] = repEnd
+                vals[13] = repLeft
+
+                out_line = ["0", vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], vals[6], vals[7], vals[8], vals[9], vals[10], vals[10], vals[11], vals[12], vals[13], vals[14]]
+
+                out.write("\t".join(out_line)+"\n")
+
+    return rm_formatted
+
 def run_tidal(args, chrom_len, read_length, codedir):
     os.chdir(args.out+"/TIDAL_out")
 
@@ -377,6 +455,9 @@ def read_table(intbl):
                 insert = Insertion()
                 split_line = line.replace("\n","").split("\t")
                 for x,val in enumerate(split_line):
+                    if headers[x] == "TE":
+                        val = val.split("@")[-1]
+                        val = val.split("=")[0]
                     insert.info[headers[x]] = val
                 
                 insertions.append(insert)
