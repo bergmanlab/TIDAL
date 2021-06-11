@@ -1,0 +1,204 @@
+TidalBase_Dmel_TE#	Flybase_code	Flybase_name	Embl_Symbol	Size	Comment	Class	Repbase_name	repClass	repFamily	Repbase_Notes	Accession	Brenneckebase_name	AltName	Length	Brenneckebase_Note
+1	FBgn0000004	17.6	X01472	7439	complete	retro-LTR	DM176_I-int	LTR	Gypsy		X01472	17.6	DMIS176	7439bp	"AKA(J01060,J01061) Derived from X01472"
+1	FBgn0000004	17.6	X01472	7439	complete	retro-LTR	DM176_LTR	LTR	Gypsy		X01472	17.6	DMIS176	7439bp	"AKA(J01060,J01061) Derived from X01472"
+2	FBgn0000005	297	X03431	6995	complete	retro-LTR	DM297_I-int	LTR	Gypsy		X03431	297	DMIS297	6995bp	Derived from X03431 (g8146)
+2	FBgn0000005	297	X03431	6995	complete	retro-LTR	DM297_LTR	LTR	Gypsy		X03431	297	DMIS297	6995bp	Derived from X03431 (g8146)
+3	FBgn0000006	412	nnnnnnnn	7567	complete	retro-LTR	DM412	LTR	Gypsy		nnnnnnnn	412	412	7567bp	   
+3	FBgn0000006	412	nnnnnnnn	7567	complete	retro-LTR	DM412_I	LTR	Gypsy		nnnnnnnn	412	412	7567bp	
+3	FBgn0000006	412	nnnnnnnn	7567	complete	retro-LTR	DM412B_LTR	LTR	Gypsy		nnnnnnnn	412	412	7567bp	
+3	FBgn0000006	412	nnnnnnnn	7567	complete	retro-LTR	TLD1	LTR	Gypsy		nnnnnnnn	412	412	7567bp	
+4	FBgn0000007	1731	X07656	4648	complete	retro-LTR	DM1731_I-int	LTR	Copia		X07656	1731	DMTN1731	4648bp	Derived from X07656 (g8700)
+4	FBgn0000007	1731	X07656	4648	complete	retro-LTR	DM1731_LTR	LTR	Copia		X07656	1731	DMTN1731	4648bp	Derived from X07656 (g8700)
+5	FBgn0005384	3S18	U23420	6126	complete	retro-LTR	BEL_I-int	LTR	Pao		U23420	3S18	DM23420	6126bp	Derived from U23420 (g733531)
+5	FBgn0005384	3S18	U23420	6126	complete	retro-LTR	BEL_LTR	LTR	Pao		U23420	3S18	DM23420	6126bp	Derived from U23420 (g733531)
+6	FBgn0063447	accord	nnnnnnnn	7404	complete	retro-LTR	ACCORD_I-int	LTR	Gypsy		nnnnnnnn	accord	ACCORD	7404bp	
+6	FBgn0063447	accord	nnnnnnnn	7404	complete	retro-LTR	ACCORD_LTR	LTR	Gypsy		nnnnnnnn	accord	ACCORD	7404bp	
+7	FBgn0063782	accord2	AF541947	7650	complete	retro-LTR	ACCORD2_I-int	LTR	Gypsy		AF541947	accord2	QBERT	7650bp	
+7	FBgn0063782	accord2	AF541947	7650	complete	retro-LTR	ACCORD2_LTR	LTR	Gypsy		AF541947	accord2	QBERT	7650bp	
+8	FBgn0010103	aurora-element	AB022762	4263	?complete	retro-LTR	NINJA_I-int	LTR	Pao		AB022762	aurora-element	DMAURA	4263bp	Derived from AB022762 (d1268008)
+8	FBgn0010103	aurora-element	AB022762	4263	?complete	retro-LTR	NINJA_LTR	LTR	Pao		AB022762	aurora-element	DMAURA	4263bp	Derived from AB022762 (d1268008)
+9	FBgn0000199	blood	nnnnnnnn	7410	complete	retro-LTR	BLOOD_I-int	LTR	Gypsy		AY180916	blood	BLOOD	7410bp	
+9	FBgn0000199	blood	nnnnnnnn	7410	complete	retro-LTR	BLOOD_LTR	LTR	Gypsy		AY180916	blood	BLOOD	7410bp	
+10	FBgn0010302	Burdock	U89994	6411	complete	retro-LTR	BURDOCK_I-int	LTR	Gypsy		U89994	Burdock	DMU89994	6411bp	Derived from U89994 (g1905850)
+10	FBgn0010302	Burdock	U89994	6411	complete	retro-LTR	BURDOCK_LTR	LTR	Gypsy		U89994	Burdock	DMU89994	6411bp	Derived from U89994 (g1905850)
+11	FBgn0022937	Circe	nnnnnnnn	7450	complete	retro-LTR	CIRCE	LTR	Gypsy		nnnnnnnn	Circe	CIRC	7450bp	
+12	FBgn0000349	copia	X02599	5143	complete	retro-LTR	Copia_I-int	LTR	Copia		X02599	copia	DMCOPIA	5143bp	Derived from X02599 (g7740)
+12	FBgn0000349	copia	X02599	5143	complete	retro-LTR	Copia_LTR	LTR	Copia		X02599	copia	DMCOPIA	5143bp	Derived from X02599 (g7740)
+13	FBgn0043969	diver	AC004377	6112	complete	retro-LTR	DIVER_I-int	LTR	Pao		AC004377	diver	Tinker	6112bp	
+13	FBgn0043969	diver	AC004377	6112	complete	retro-LTR	DIVER_LTR	LTR	Pao		AC004377	diver	Tinker	6112bp	
+14	FBgn0063439	diver2	nnnnnnnn	4917	complete	retro-LTR	DIVER2_I-int	LTR	Pao		nnnnnnnn	diver2	DIVER2	4917bp	
+14	FBgn0063439	diver2	nnnnnnnn	4917	complete	retro-LTR	DIVER2_LTR	LTR	Pao		nnnnnnnn	diver2	DIVER2	4917bp	
+15	FBgn0062343	Dm88	nnnnnnnn	4558	complete	retro-LTR	Copia2_I-int	LTR	Copia		nnnnnnnn	Dm88	DM88	4558bp	
+15	FBgn0062343	Dm88	nnnnnnnn	4558	complete	retro-LTR	Copia2_LTR_DM	LTR	Copia						
+16	FBgn0014947	flea	Z27119	5034	complete	retro-LTR	BLASTOPIA_I-int	LTR	Gypsy		Z27119	flea	DMBLPP	5034bp	Derived from Z27119 (g415797)
+16	FBgn0014947	flea	Z27119	5034	complete	retro-LTR	BLASTOPIA_LTR	LTR	Gypsy		Z27119	flea	DMBLPP	5034bp	Derived from Z27119 (g415797)
+17	FBgn0061513	frogger	AF492763	2483	?complete	retro-LTR	FROGGER_I-int	LTR	Copia		AF492763	frogger	FROGGER	2483bp	
+17	FBgn0061513	frogger	AF492763	2483	?complete	retro-LTR	FROGGER_LTR	LTR	Copia		AF492763	frogger	FROGGER	2483bp	
+18	FBgn0015945	GATE	AJ010298	8507	complete	retro-LTR	BATUMI_I-int	LTR	Pao		AJ010298	GATE	DME010298	8507bp	Derived from AJ010298 (e1315889)
+18	FBgn0015945	GATE	AJ010298	8507	complete	retro-LTR	BATUMI_LTR	LTR	Pao		AJ010298	GATE	DME010298	8507bp	Derived from AJ010298 (e1315889)
+19	FBgn0063436	gtwin	nnnnnnnn	7411	complete	retro-LTR	GTWIN_I-int	LTR	Gypsy		AC006215	gtwin	GTWIN	7411bp	   
+19	FBgn0063436	gtwin	nnnnnnnn	7411	complete	retro-LTR	GTWIN_LTR	LTR	Gypsy		AC006215	gtwin	GTWIN	7411bp	
+20	FBgn0001167	gypsy	M12927	7469	complete	retro-LTR	Gypsy_I-int	LTR	Gypsy		M12927	gypsy	DMGYPF1A	7469bp	Derived from M12927 (g157583)
+20	FBgn0001167	gypsy	M12927	7469	complete	retro-LTR	Gypsy_LTR	LTR	Gypsy		M12927	gypsy	DMGYPF1A	7469bp	Derived from M12927 (g157583)
+21	FBgn0067387	gypsy10	nnnnnnnn	6006	incomplete	retro-LTR	Gypsy10_I-int	LTR	Gypsy		nnnnnnnn	gypsy10	GYPSY10	6006bp	
+21	FBgn0067387	gypsy10	nnnnnnnn	6006	incomplete	retro-LTR	Gypsy10_LTR	LTR	Gypsy		nnnnnnnn	gypsy10	GYPSY10	6006bp	
+22	FBgn0067386	gypsy11	nnnnnnnn	4428	incomplete	retro-LTR	Gypsy11_I-int	LTR	Gypsy		nnnnnnnn	gypsy11	GYPSY11	4428bp	
+22	FBgn0067386	gypsy11	nnnnnnnn	4428	incomplete	retro-LTR	Gypsy11_LTR	LTR	Gypsy		nnnnnnnn	gypsy11	GYPSY11	4428bp	
+23	FBgn0067385	gypsy12	nnnnnnnn	10218	incomplete	retro-LTR	Gypsy12_I-int	LTR	Gypsy		AE003789	gypsy12	GYPSY12	10218bp	
+23	FBgn0067385	gypsy12	nnnnnnnn	10218	incomplete	retro-LTR	Gypsy12_LTR	LTR	Gypsy		AE003789	gypsy12	GYPSY12	10218bp	
+24	FBgn0063435	gypsy2	nnnnnnnn	6841	complete	retro-LTR	Gypsy2_I-int	LTR	Gypsy		AL035631	gypsy2	GYPSY2	6841bp	
+24	FBgn0063435	gypsy2	nnnnnnnn	6841	complete	retro-LTR	Gypsy2_LTR	LTR	Gypsy		AL035631	gypsy2	GYPSY2	6841bp	
+25	FBgn0063434	gypsy3	nnnnnnnn	6973	complete	retro-LTR	Gypsy3_I-int	LTR	Gypsy		AC007477	gypsy3	GYPSY3	6973bp	
+25	FBgn0063434	gypsy3	nnnnnnnn	6973	complete	retro-LTR	Gypsy3_LTR	LTR	Gypsy		AC007477	gypsy3	GYPSY3	6973bp	
+26	FBgn0063433	gypsy4	nnnnnnnn	7369	complete	retro-LTR	Gypsy4_I-int	LTR	Gypsy		nnnnnnnn	gypsy4	GYPSY4	6852bp	
+26	FBgn0063433	gypsy4	nnnnnnnn	7369	complete	retro-LTR	Gypsy4_LTR	LTR	Gypsy		nnnnnnnn	gypsy4	GYPSY4	6852bp	
+27	FBgn0063432	gypsy5	nnnnnnnn	6852	complete	retro-LTR	Gypsy5_I-int	LTR	Gypsy		AE003485	gypsy5	GYPSY5	7369bp	
+27	FBgn0063432	gypsy5	nnnnnnnn	6852	complete	retro-LTR	Gypsy5_LTR	LTR	Gypsy		AE003485	gypsy5	GYPSY5	7369bp	
+28	FBgn0063431	gypsy6	nnnnnnnn	7826	complete	retro-LTR	Gypsy6_I-int	LTR	Gypsy		nnnnnnnn	gypsy6	GYPSY6	7826bp	
+28	FBgn0063431	gypsy6	nnnnnnnn	7826	complete	retro-LTR	Gypsy6_LTR	LTR	Gypsy		nnnnnnnn	gypsy6	GYPSY6	7826bp	
+29	FBgn0067384	gypsy7	AE003788	5486	incomplete	retro-LTR	Gypsy7_I-int	LTR	Gypsy		AE003788	gypsy7	GYPSY7	5486bp	
+29	FBgn0067384	gypsy7	AE003788	5486	incomplete	retro-LTR	Gypsy7_LTR	LTR	Gypsy		AE003788	gypsy7	GYPSY7	5486bp	
+30	FBgn0067383	gypsy8	AE003788	4955	incomplete	retro-LTR	Gypsy8_I-int	LTR	Gypsy		AE003788	gypsy8	GYPSY8	4955bp	
+30	FBgn0067383	gypsy8	AE003788	4955	incomplete	retro-LTR	Gypsy8_LTR	LTR	Gypsy		AE003788	gypsy8	GYPSY8	4955bp	
+31	FBgn0067382	gypsy9	AE002591	5349	incomplete	retro-LTR	Gypsy9_I-int	LTR	Gypsy		AE002591	gypsy9	GYPSY9	5349bp	
+31	FBgn0067382	gypsy9	AE002591	5349	incomplete	retro-LTR	Gypsy9_LTR	LTR	Gypsy		AE002591	gypsy9	GYPSY9	5349bp	
+32	FBgn0001207	HMS-Beagle	AF365402	7062	complete	retro-LTR	HMSBEAGLE_I-int	LTR	Gypsy		AF365402	HMS-Beagle	Beagle	7062bp	
+32	FBgn0001207	HMS-Beagle	AF365402	7062	complete	retro-LTR	DMLTR5	LTR	Gypsy	The LTR piece of HMSBEAGLE(1)	AF365402	HMS-Beagle	Beagle	7062bp	
+33	FBgnnnnnnnn	HMS-Beagle2	nnnnnnnn	7220	complete	retro-LTR	Gypsy2-I_DM	LTR	Gypsy		AF365402	HMS-Beagle2	Beagle2	7220bp	
+33	FBgnnnnnnnn	HMS-Beagle2	nnnnnnnn	7220	complete	retro-LTR	Gypsy2-LTR_DM	LTR	Gypsy		AF365402	HMS-Beagle2	Beagle2	7220bp	
+34	FBgn0026065	Idefix	AJ009736	7411	complete	retro-LTR	IDEFIX_I-int	LTR	Gypsy		AJ009736	Idefix	DME9736	7411bp	Derived from AJ009736 (e1371475)
+34	FBgn0026065	Idefix	AJ009736	7411	complete	retro-LTR	IDEFIX_LTR	LTR	Gypsy		AJ009736	Idefix	DME9736	7411bp	Derived from AJ009736 (e1371475)
+35	FBgn0063430	invader1	nnnnnnnn	4032	complete	retro-LTR	Invader1_I-int	LTR	Gypsy		nnnnnnnn	invader1	INVADER	4032bp	
+35	FBgn0063430	invader1	nnnnnnnn	4032	complete	retro-LTR	Invader1_LTR	LTR	Gypsy		nnnnnnnn	invader1	INVADER	4032bp	
+36	FBgn0063429	invader2	nnnnnnnn	5124	complete	retro-LTR	Invader2_I-int	LTR	Gypsy		nnnnnnnn	invader2	INVADER2	5124bp	
+36	FBgn0063429	invader2	nnnnnnnn	5124	complete	retro-LTR	Invader2_LTR	LTR	Gypsy		nnnnnnnn	invader2	INVADER2	5124bp	
+37	FBgn0063428	invader3	nnnnnnnn	5484	complete	retro-LTR	Invader3_I-int	LTR	Gypsy		nnnnnnnn	invader3	INVADER3	5484bp	
+37	FBgn0063428	invader3	nnnnnnnn	5484	complete	retro-LTR	Invader3_LTR	LTR	Gypsy		nnnnnnnn	invader3	INVADER3	5484bp	
+38	FBgn0063427	invader4	nnnnnnnn	3105	complete	retro-LTR	Invader4_I-int	LTR	Gypsy		nnnnnnnn	invader4	INVADER4	3105bp	
+38	FBgn0063427	invader4	nnnnnnnn	3105	complete	retro-LTR	Invader4_LTR	LTR	Gypsy		nnnnnnnn	invader4	INVADER4	3105bp	
+39	FBgn0063426	invader5	nnnnnnnn	4038	complete	retro-LTR	Invader5_I-int	LTR	Gypsy		nnnnnnnn	invader5	INVADER5	4038bp	
+39	FBgn0063426	invader5	nnnnnnnn	4038	complete	retro-LTR	Invader5_LTR	LTR	Gypsy		nnnnnnnn	invader5	INVADER5	4038bp	
+40	FBgn0067380	invader6	NT_033778	4885	incomplete	retro-LTR	Invader6_I-int	LTR	Gypsy		NT_033778	invader6	INVADER6	4885bp	
+40	FBgn0067380	invader6	NT_033778	4885	incomplete	retro-LTR	Invader6_LTR	LTR	Gypsy		NT_033778	invader6	INVADER6	4885bp	
+41	FBgn0063919	Max-element	AJ487856	8556	complete	retro-LTR	MAX_I-int	LTR	Pao		AJ487856	Max-element	DME487856	8556bp	Derived from AJ487856 (Rel.
+41	FBgn0063919	Max-element	AJ487856	8556	complete	retro-LTR	MAX_LTR	LTR	Pao		AJ487856	Max-element	DME487856	8556bp	Derived from AJ487856 (Rel.
+42	FBgn0063917	McClintock	AF541948	6450	complete	retro-LTR	QUASIMODO2-I_DM	LTR	Gypsy		AF541948	McClintock	McCLINTOCK	6450bp	
+42	FBgn0063917	McClintock	AF541948	6450	complete	retro-LTR	QUASIMODO2-LTR_DM	LTR	Gypsy		AF541948	McClintock	McCLINTOCK	6450bp	
+43	FBgn0002697	mdg1	X59545	7480	complete	retro-LTR	MDG1_I-int	LTR	Gypsy		X59545	mdg1	DMRTMGD1	7480bp	Derived from X59545 (g8507)
+43	FBgn0002697	mdg1	X59545	7480	complete	retro-LTR	MDG1_LTR	LTR	Gypsy		X59545	mdg1	DMRTMGD1	7480bp	Derived from X59545 (g8507)
+44	FBgn0002698	mdg3	X95908	5519	complete	retro-LTR	MDG3_I-int	LTR	Gypsy		X95908	mdg3	DMMDG3	5519bp	Derived from X95908 (e990667)
+44	FBgn0002698	mdg3	X95908	5519	complete	retro-LTR	MDG3_LTR	LTR	Gypsy		X95908	mdg3	DMMDG3	5519bp	Derived from X95908 (e990667)
+45	FBgn0002745	micropia	"X14037,X15066"	5461	complete	retro-LTR	MICROPIA_I-int	LTR	Gypsy		X15066	micropia	DMDM11	5461bp	
+45	FBgn0002745	micropia	"X14037,X15066"	5461	complete	retro-LTR	MICROPIA_LTR	LTR	Gypsy		X15066	micropia	DMDM11	5461bp	
+46	FBgn0003007	opus	AY180918	7521	complete	retro-LTR	NOMAD_I-int	LTR	Gypsy		AY180918	opus	OPUS	7521bp	
+46	FBgn0003007	opus	AY180918	7521	complete	retro-LTR	NOMAD_LTR	LTR	Gypsy		AY180918	opus	OPUS	7521bp	
+47	FBgn0063755	Osvaldo	AY089271	1543	incomplete	retro-LTR	OSVALDO_I-int	LTR	Gypsy		AY089271	Osvaldo	OSV	1543bp	
+47	FBgn0063755	Osvaldo	AY089271	1543	incomplete	retro-LTR	OSVALDO_LTR	LTR	Gypsy		AY089271	Osvaldo	OSV	1543bp	
+48	FBgn0044355	Quasimodo	AF364550	7387	complete	retro-LTR	QUASIMODO_I-int	LTR	Gypsy		AF364550	Quasimodo	QUASIMODO	7387bp	
+48	FBgn0044355	Quasimodo	AF364550	7387	complete	retro-LTR	QUASIMODO_LTR	LTR	Gypsy		AF364550	Quasimodo	QUASIMODO	7387bp	
+49	FBgn0000155	roo	AY180917	9092	complete	retro-LTR	ROO_I-int	LTR	Pao		AY180917	roo	DM_ROO	9092bp	   
+49	FBgn0000155	roo	AY180917	9092	complete	retro-LTR	ROO_LTR	LTR	Pao		AY180917	roo	DM_ROO	9092bp	
+50	FBgn0063394	rooA	nnnnnnnn	7621	complete	retro-LTR	ROOA_I-int	LTR	Pao		nnnnnnnn	rooA	ROOA_LTR	7621bp	
+50	FBgn0063394	rooA	nnnnnnnn	7621	complete	retro-LTR	ROOA_LTR	LTR	Pao		nnnnnnnn	rooA	ROOA_LTR	7621bp	
+51	FBgn0061485	rover	AF492764	7318	complete	retro-LTR	ROVER-I_DM	LTR	Gypsy		AF492764	rover	ROVER	7318bp	
+51	FBgn0061485	rover	AF492764	7318	complete	retro-LTR	ROVER-LTR_DM	LTR	Gypsy		AF492764	rover	ROVER	7318bp	
+52	FBgn0003490	springer	AF364549	7546	complete	retro-LTR	Gypsy1-I_DM	LTR	Gypsy		AF364549	springer	SPRINGER	7546bp	Derived from BACR06P08 by
+52	FBgn0003490	springer	AF364549	7546	complete	retro-LTR	Gypsy1-LTR_DM	LTR	Gypsy		AF364549	springer	SPRINGER	7546bp	Derived from BACR06P08 by
+53	FBgn0003519	Stalker	AF420242	7256	complete	retro-LTR	STALKER4_I-int	LTR	Gypsy		AF420242	Stalker	STALKER	7256bp	
+53	FBgn0003519	Stalker	AF420242	7256	complete	retro-LTR	STALKER4_LTR	LTR	Gypsy		AF420242	Stalker	STALKER	7256bp	
+54	FBgn0063455	Stalker2	nnnnnnnn	7672	complete	retro-LTR	Stalker2_I-int	LTR	Gypsy		nnnnnnnn	Stalker2	STALKER2	7672bp	
+54	FBgn0063455	Stalker2	nnnnnnnn	7672	complete	retro-LTR	Stalker2_LTR	LTR	Gypsy		nnnnnnnn	Stalker2	STALKER2	7672bp	
+55	FBgn0063454	Stalker3	nnnnnnnn	372	LTR	retro-LTR	Stalker3_LTR	LTR	Gypsy		nnnnnnnn	Stalker3T	STALKER3	372bp	
+56	FBgn0063897	Stalker4	AF541949	7359	complete	retro-LTR	STALKER4_I-int	LTR	Gypsy		AF541949	Stalker4	STALKER4	7359bp	
+56	FBgn0063897	Stalker4	AF541949	7359	complete	retro-LTR	STALKER4_LTR	LTR	Gypsy		AF541949	Stalker4	STALKER4	7359bp	
+57	FBgn0045970	Tabor	AC007146	7345	complete	retro-LTR	TABOR_I-int	LTR	Gypsy		AC007146	Tabor	TABOR	7345bp	
+57	FBgn0045970	Tabor	AC007146	7345	complete	retro-LTR	TABOR_LTR	LTR	Gypsy		AC007146	Tabor	TABOR	7345bp	
+58	FBgn0004082	Tirant	nnnnnnnn	8526	complete	retro-LTR	TIRANT_I-int	LTR	Gypsy		nnnnnnnn	Tirant	TIRANT	8526bp	   
+58	FBgn0004082	Tirant	nnnnnnnn	8526	complete	retro-LTR	TIRANT_LTR	LTR	Gypsy		nnnnnnnn	Tirant	TIRANT	8526bp	
+59	FBgn0063450	Tom1	nnnnnnnn	410	LTR	retro-LTR	TOM_I-int	LTR	Gypsy		nnnnnnnn	Tom1	DMTOM1_LTR	410bp	   
+59	FBgn0063450	Tom1	nnnnnnnn	410	LTR	retro-LTR	DMTOM1_LTR	LTR	Gypsy		nnnnnnnn	Tom1	DMTOM1_LTR	410bp	   
+60	FBgn0040267	Transpac	AF222049	5249	complete	retro-LTR	TRANSPAC_I-int	LTR	Gypsy		AF222049	Transpac	5249bp	Derived	from AF222049 (AF222049.1) (Rel.
+60	FBgn0040267	Transpac	AF222049	5249	complete	retro-LTR	TRANSPAC_LTR	LTR	Gypsy		AF222049	Transpac	5249bp	Derived	from AF222049 (AF222049.1) (Rel.
+61	FBgn0023131	ZAM	AJ000387	8435	complete	retro-LTR	ZAM_I-int	LTR	Gypsy		AJ000387	ZAM	DMZAM	8435bp	Derived from AJ000387 (e1237231)
+61	FBgn0023131	ZAM	AJ000387	8435	complete	retro-LTR	ZAM_LTR	LTR	Gypsy		AJ000387	ZAM	DMZAM	8435bp	Derived from AJ000387 (e1237231)
+62		Bica	Repbase	4943		retro-LTR	Bica_I-int	LTR	Gypsy		Repbase	Bica		4943	
+62		Bica	Repbase	4943		retro-LTR	Bica_LTR	LTR	Gypsy		Repbase	Bica		4943	
+63		Chimpo	Repbase	4266		retro-LTR	Chimpo_I-int	LTR	Gypsy		Repbase	Chimpo		4266	
+63		Chimpo	Repbase	4266		retro-LTR	Chimpo_LTR	LTR	Gypsy		Repbase	Chimpo		4266	
+64		Chouto	Repbase	6333		retro-LTR	Chouto_I-int	LTR	Gypsy		Repbase	Chouto		6333	
+64		Chouto	Repbase	6333		retro-LTR	Chouto_LTR	LTR	Gypsy		Repbase	Chouto		6333	
+65		Copia1_DM	Repbase	4417		retro-LTR	Copia1-I_DM	LTR	Copia		Repbase	Copia1_DM		4417	
+65		Copia1_DM	Repbase	4417		retro-LTR	Copia1-LTR_DM	LTR	Copia		Repbase	Copia1_DM		4417	
+66		Gypsy6A_LTR	Repbase	420		retro-LTR	Gypsy6A_LTR	LTR	Gypsy		Repbase	Gypsy6A_LTR		420	
+67		Gypsy12A_LTR	Repbase	2280		retro-LTR	Gypsy12A_LTR	LTR	Gypsy		Repbase	Gypsy12A_LTR		2280	
+68		TLD2	Repbase	218		retro-LTR	TLD2	LTR	Gypsy		Repbase	TLD2		218	
+69	FBgn0063440	baggins	nnnnnnnn	5453	complete	retro-Non-LTR	Baggins1	LINE	LOA		nnnnnnnn	baggins	BAGGINS	5453bp	
+70	FBgn0000224	BS	nnnnnnnn	5142	complete	retro-Non-LTR	BS	LINE	Jockey		nnnnnnnn	BS	BS	5142bp	   
+71	FBgn0067624	BS3	nnnnnnnn	1790	?complete	retro-Non-LTR	BS3_DM	LINE	Jockey		nnnnnnnn	BS3	BS3	1790bp	   
+72	FBgn0067623	BS4	nnnnnnnn	754	incomplete	retro-Non-LTR	BS4_DM	LINE	Jockey		nnnnnnnn	BS4	BS4	754bp	   
+73	FBgn0063594	Cr1a	nnnnnnnn	4470	complete	retro-Non-LTR	DMCR1A	LINE	CR1		nnnnnnnn	Cr1a	DMCR1A	4470bp	
+74	FBgn0000481	Doc	X17551	4725	?incomplete	retro-Non-LTR	DOC	LINE	Jockey		X17551	Doc	DMW1DOC	4725bp	Derived from X17551 (g8821)
+75	FBgn0063534	Doc2-element	nnnnnnnn	4789	complete	retro-Non-LTR	DOC2_DM	LINE	Jockey		nnnnnnnn	Doc2-element	DOC2	4789bp	   
+76	FBgn0063533	Doc3-element	nnnnnnnn	4740	complete	retro-Non-LTR	DOC3_DM	LINE	Jockey		nnnnnnnn	Doc3-element	DOC3	4740bp	   
+77	FBgn0069587	Doc4-element	nnnnnnnn	2791	incomplete	retro-Non-LTR	DOC4_DM	LINE	Jockey		nnnnnnnn	Doc4-element	DOC4	2791bp	   
+78	FBgn0000652	F-element	AC005198	4708	complete	retro-Non-LTR	FW_DM	LINE	Jockey		AC005198	F-element	F	4708bp	   
+79	FBgn0067421	Fw2	nnnnnnnn	3961	?complete	retro-Non-LTR	FW2_DM	LINE	Jockey		nnnnnnnn	Fw2	FW2	3961bp	   
+80	FBgn0067420	Fw3	nnnnnnnn	3132	?complete	retro-Non-LTR	FW3_DM	LINE	Jockey		nnnnnnnn	Fw3	FW3	3132bp	   
+81	FBgn0063507	G2	nnnnnnnn	3102	complete	retro-Non-LTR	G2_DM	LINE	Jockey		AC006215	G2	G2	3102bp	   
+82	FBgn0063506	G3	nnnnnnnn	4605	complete	retro-Non-LTR	G3_DM	LINE	Jockey		nnnnnnnn	G3	G3	4605bp	   
+83	FBgn0063505	G4	nnnnnnnn	3856	complete	retro-Non-LTR	G4_DM	LINE	Jockey		nnnnnnnn	G4	G4_DM	3856bp	   
+84	FBgn0063504	G5	nnnnnnnn	4856	complete	retro-Non-LTR	G5_DM	LINE	Jockey		nnnnnnnn	G5	G5_DM	4856bp	   
+85	FBgn0069433	G5A	nnnnnnnn	2841	incomplete	retro-Non-LTR	G5A_DM	LINE	Jockey		nnnnnnnn	G5A	G5A	2841bp	   
+86	FBgn0063503	G6	nnnnnnnn	2042	complete	retro-Non-LTR	G6_DM	LINE	Jockey		nnnnnnnn	G6	G6_DM	2042bp	   
+87	FBgn0067419	G7	AC003788	1192	incomplete	retro-Non-LTR	G7_DM	LINE	Jockey		AC003788	G7	G7	1192bp	   
+88	FBgn0001100	G-element	X06950	4346	?complete	retro-Non-LTR	G_DM	LINE	Jockey		X06950	G-element	DMREPG	4346bp	Derived from X06950 (g8427)
+89	FBgn0020425	Helena	nnnnnnnn	1318	incomplete	retro-Non-LTR	HELENA_RT	LINE	Jockey		nnnnnnnn	Helena	HEL	1317bp	
+90	FBgn0004141	HeT-A	U06920	6083	complete	retro-Non-LTR	HETA	LINE	Jockey		U06920	HeT-A	DM06920	6083bp	Derived from U06920.2 (Rel.
+91	FBgn0001249	I-element	M14954	5371	complete	retro-Non-LTR	I_DM	LINE	I		M14954	I-element	DMIFACA	5371bp	Derived from M14954 (g157749)
+92	FBgn0043055	Ivk	nnnnnnnn	5402	complete	retro-Non-LTR	IVK_DM	LINE	I		nnnnnnnn	Ivk	IVK	5402bp	
+93	FBgn0001283	jockey	M22874	5020	complete	retro-Non-LTR	LINEJ1_DM	LINE	Jockey		M22874	jockey	DMLINEJA	5020bp	Derived from M22874 (g157823)
+94	FBgn0063425	jockey2	nnnnnnnn	3428	complete	retro-Non-LTR	Jockey2	LINE	Jockey		nnnnnnnn	jockey2	JOCKEY2	3428bp	   
+95	FBgn0046110	Juan	AY180919	4236	complete	retro-Non-LTR	DOC6_DM	LINE	Jockey		AY180919	Juan	JUAN	4236bp	   
+96	FBgn0046701	Penelope	AF418572	804	incomplete	retro-Non-LTR					AF418572	Penelope	804bp	Derived	from AF418572 (AF418572) (Rel.
+97	FBgn0015786	Porto1	nnnnnnnn	4682	?complete	retro-Non-LTR	DOC5_DM	LINE	Jockey		nnnnnnnn	Porto1	DOC5	4682bp	   
+98	FBgn0063900	Q-element	AE002612	759	incomplete	retro-Non-LTR	DMCR1A	LINE	CR1		AE002612	Q-element	Q	759bp	Derived from P1 clones
+99	FBgn0067405	R1-2	nnnnnnnn	3216	incomplete	retro-Non-LTR	R1-2_DM	LINE	R1		nnnnnnnn	R1-2	R1-2	3216bp	   
+100	FBgn0003908	R1A1-element	X51968	5356	complete	retro-Non-LTR	R1_DM	LINE	R1		X51968	R1A1-element	DMRER1DM	5356bp	Derived from X51968 (g8429)
+101	FBgn0003909	R2-element	X51967	3607	complete	retro-Non-LTR	R2_DM	LINE	R2		X51967	R2-element	DMRER2DM	3607bp	Derived from X51967 (g8432)
+102	FBgn0041728	Rt1a	AJ278684	5108	complete	retro-Non-LTR	DMRT1A	LINE	R1		AJ278684	Rt1a	DME278684	5108bp	Derived from AJ278684 (AJ278684.1)
+103	FBgn0042682	Rt1b	AF281636	5171	complete	retro-Non-LTR	DMRT1C	LINE	R1		AC005734	Rt1b	RT1B	5150bp	   
+104	FBgn0063467	Rt1c	nnnnnnnn	5443	complete	retro-Non-LTR	DMRT1B	LINE	R1		nnnnnnnn	Rt1c	RT1C	5443bp	   
+105	FBgn0069343	TAHRE	AJ542581	10463	complete	retro-Non-LTR	TAHRE	LINE	Jockey		AJ542581	TAHRE	OSV	10463bp	
+106	FBgn0004904	TART-A	AY561850	13424	complete	retro-Non-LTR	TART	LINE	Jockey		AY561850	TART-A	13424bp		   
+107	FBgn0004904	TART-B	U14101	10654	complete	retro-Non-LTR	TART_B1	LINE	Jockey		U14101	TART-B	DM14101	10654bp	Derived from U14101 (g603662)
+108	FBgn0004904	TART-C	AY600955	11124	complete	retro-Non-LTR					AY600955	TART-C	TARTC	11124bp	   
+109	FBgn0042231	X-element	AF237761	4740	complete	retro-Non-LTR	BS2	LINE	Jockey		AF237761	X-element	ROXELEMENT	4740bp	
+110	FBgn0026416	INE-1	U66884	611	?incomplete	retro-SINE	DNAREP1_DM	RC	Helitron		U66884	INE-1	INE1	611bp	Derived from U66884 (e1371475)
+111	FBgn0005673	1360	nnnnnnnn	3409	complete	DNA-IR	PROTOP	DNA	P	Aka Hoppel	AC005453	1360	1360	3409bp	
+111	FBgn0005673	1360	nnnnnnnn	3409	complete	DNA-IR	PROTOP_A	DNA	P	Aka Hoppel	AC005453	1360	1360	3409bp	
+111	FBgn0005673	1360	nnnnnnnn	3409	complete	DNA-IR	PROTOP_B	DNA	P	Aka Hoppel	AC005453	1360	1360	3409bp	
+112	FBgn0005773	Bari1	X67681	1728	complete	DNA-IR	BARI_DM	DNA	TcMar-Tc1		X67681	Bari1	DMBARI1	1728bp	AKA(S55767) Derived from X67681
+113	FBgn0064134	Bari2	AF541951	1064	complete	DNA-IR	BARI1	DNA	TcMar-Tc1		AF541951	Bari2		1064bp	"Derived from AF541951 (Rel. 73,"
+114	FBgn0001181	HB	X01748	1653	?incomplete	DNA-IR	FB4_DM	DNA	TcMar-Tc1		X01748	HB	DMTHB1	1653bp	Derived from X01748 (g8693)
+115	FBgn0001210	hobo	M69216	2959	complete	DNA-IR	HOBO	DNA	hAT-hobo		M69216	hobo	DMHFL1	2959bp	Derived from M69216 (g157606)
+116	FBgn0014967	hopper	X80025	1435	incomplete	DNA-IR	M4DM	DNA	CMC-Transib		X80025	hopper	DMTRDNA	1435bp	Derived from X80025 (g510507)
+117	FBgn0067381	hopper2	AF541950	1593	incomplete	DNA-IR	M4DM	DNA	CMC-Transib		AF541950	hopper2	HOPPER2	1593bp	   
+118	FBgn0063402	looper1	nnnnnnnn	1881	incomplete	DNA-IR	LOOPER1_DM	DNA	PiggyBac		nnnnnnnn	looper1	LOOPER1_DM	1881bp	   
+119	FBgn0063401	mariner2	nnnnnnnn	912	complete	DNA-IR	Mariner2_DM	DNA	TcMar-Tc1		nnnnnnnn	mariner2	MARINER2	912bp	   
+120	FBgn0002949	NOF	X15469;X51937	4347	complete	DNA-IR	FB4_DM	DNA	TcMar-Tc1		X15469	NOF	FB	4347bp	Derived from X51937 (g8297)
+121	FBgn0003055	P-element	X06779	2907	complete	DNA-IR	PLACW_DM	DNA	P		X06779	P-element	PPI251	2907bp	"AKA(V01520,X69493) Derived from X06779"
+122	FBgn0003122	pogo	X59837	2121	complete	DNA-IR	POGO	DNA	TcMar-Pogo		X59837	pogo	DMPOGOR11	2121bp	AKA(S90749) Derived from X59837
+122	FBgn0003122	pogo	X59837	2121	complete	DNA-IR	POGON1	DNA	TcMar-Pogo		X59837	pogo	DMPOGOR11	2121bp	AKA(S90749) Derived from X59837
+123	FBgn0063466	S2	nnnnnnnn	1735	complete	DNA-IR	S2_DM	DNA	TcMar-Tc1		nnnnnnnn	S2	S2	1735bp	   
+124	FBgn0004905	S-element	U33463	1736	?incomplete	DNA-IR	S_DM	DNA	TcMar-Tc1		U33463	S-element	DM33463	1736bp	Derived from U33463 (g1006788)
+125	FBgn0026410	Tc1	nnnnnnnn	1666	complete	DNA-IR	TC1_DM	DNA	TcMar-Tc1		nnnnnnnn	Tc1	TC1	1666bp	   
+126	FBgn0069340	Tc1-2	nnnnnnnn	1644	complete	DNA-IR	TC1-2_DM	DNA	TcMar-Tc1		nnnnnnnn	Tc1-2	TC1-2	1644bp	   
+127	FBgn0061191	Tc3	AC009537	1743	complete	DNA-IR					AC009537	Tc3	TC3	1743bp	   
+128	FBgn0063372	transib1	nnnnnnnn	2167	complete	DNA-IR	TRANSIB1	DNA	CMC-Transib		nnnnnnnn	transib1	TRANSIB1	2167bp	   
+129	FBgn0063371	transib2	nnnnnnnn	2844	complete	DNA-IR	TRANSIB2	DNA	CMC-Transib		nnnnnnnn	transib2	TRANSIB2	2844bp	   
+130	FBgn0063370	transib3	nnnnnnnn	2883	complete	DNA-IR	TRANSIB3	DNA	CMC-Transib		nnnnnnnn	transib3	TRANSIB3	2883bp	   
+131	FBgn0063369	transib4	nnnnnnnn	2656	complete	DNA-IR	TRANSIB4	DNA	CMC-Transib		nnnnnnnn	transib4	TRANSIB4	2656bp	
+132	FBgn0000638	FB	V00246	1106	?incomplete	Foldback	FB4_DM	DNA	TcMar-Tc1		V00246	FB	DMTNFB	1106bp	AKA(J01084) Derived from V00246
+133	FBgn0067418	Helitron	AE002840	564	?incomplete	Helitron	Helitron1_DM	RC	Helitron		AE002840	Helitron	HELITRON1_DM	564bp	
+134		Transib5	Repbase	3001			Transib5	DNA	CMC-Transib		Repbase	Transib5		3001	
+135		Transib-N1_DM	Repbase	514			Transib-N1_DM	DNA	CMC-Transib		Repbase	Transib-N1_DM		514	
