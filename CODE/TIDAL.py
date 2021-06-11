@@ -19,7 +19,7 @@ class Insertion:
 ANNOTATION_FILES = {
     "consensus" : "Tidalbase_transposon_gene_sequence.fa",
     "annotation" : "refflat_dm6.txt",
-    "gem" : "gem_mappability_dm6_100mer.mappability",
+    "gem" : "gem_mappability_dm6_100mer.mappability.gz",
     "virus" : "fly_virus_structure_repbase.fa",
     "repeatmasker" : "repmasker_dm6_track.txt",
     "table" : "Tidalbase_Dmel_TE_classifications_2015.txt"
@@ -252,6 +252,9 @@ def setup_input_files(args):
     args.consensus = copy(args.consensus, ref_dir)
     args.annotation = copy(args.annotation, ref_dir)
     args.gem = copy(args.gem, ref_dir)
+    if args.gem[-3:] == ".gz":
+        run_command(["gunzip", args.gem])
+        args.gem = args.gem[:-3]
     args.virus = copy(args.virus, ref_dir)
     args.masked = copy(args.masked, ref_dir, outfilename="masked."+ get_base_name(args.masked))
     args.repeatmasker = copy(args.repeatmasker, ref_dir)
@@ -312,7 +315,16 @@ def repeatmask(reference, consensus, threads, out):
     tmp_dir = out+"/rm/"
     os.mkdir(tmp_dir)
     run_command(["cp", reference, tmp_dir+"/reference.fasta"])
-    command = ["RepeatMasker","-pa", str(threads), "-lib", consensus, "-dir", tmp_dir, "-s", "-nolow", "-no_is", reference]
+    
+    te_consensus = tmp_dir+"consensus_tes.fasta"
+    with open(te_consensus, "w") as outfa, open(consensus, "r") as infa:
+        for record in SeqIO.parse(infa, "fasta"):
+            if "|TE@" in str(record.id):
+                outfa.write(">"+str(record.id)+"\n")
+                outfa.write(str(record.seq)+"\n")
+
+
+    command = ["RepeatMasker","-pa", str(threads), "-lib", te_consensus, "-dir", tmp_dir, "-s", "-nolow", "-no_is", reference]
     run_command(command)
 
     rm_out = ""
@@ -491,7 +503,7 @@ def write_output(depletion_tbl, insertion_tbl, rm_out, rep_fly_table, reference,
 
     all_repeats = read_table(rm_out)
     depletions = read_table(depletion_tbl)
-    families = get_repbase_families(rep_fly_table)
+    # families = get_repbase_families(rep_fly_table)
 
     chroms = []
     with open(reference, "r") as infa:
@@ -503,11 +515,11 @@ def write_output(depletion_tbl, insertion_tbl, rm_out, rep_fly_table, reference,
     ref_insert_bed = out_dir+"/TIDAL_out/"+sample_name+"_result/"+sample_name+"_TIDAL_ref.bed"
     with open(ref_insert_bed,"w") as ref_bed:
         for repeat in all_repeats:
-            if repeat.info['repName'] in families.keys() and repeat.info['genoName'] in chroms:
+            if repeat.info['genoName'] in chroms:
                 chrom = repeat.info['genoName']
                 start = repeat.info['genoStart']
                 end = repeat.info['genoEnd']
-                name = families[repeat.info['repName']]+"|reference|NA|"+sample_name+"|sr|"
+                name = repeat.info['repName']+"|reference|NA|"+sample_name+"|sr|"
                 out_line = [chrom, start, end, name, "0", repeat.info['strand']]
                 ref_bed.write("\t".join(out_line) + "\n")
     
@@ -563,6 +575,7 @@ def write_output(depletion_tbl, insertion_tbl, rm_out, rep_fly_table, reference,
     with open(nonredundant_bed, "r") as inbed, open(labeled_bed, "a") as outbed:
         outbed.write('track name="'+sample_name+'_tidal" description="'+sample_name+'_tidal"\n')
         for x,line in enumerate(inbed):
+            line = line.replace("|reference|","|nonabs|")
             split_line = line.split("\t")
             split_line[3] += str(x)
             outbed.write("\t".join(split_line))
